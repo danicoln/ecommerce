@@ -21,7 +21,7 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
     private CategoriaProduto categoria;
-    
+
     @Column(name = "sku")
     private String sku;
 
