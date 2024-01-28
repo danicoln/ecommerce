@@ -2,6 +2,9 @@ package com.luv2code.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,8 +14,11 @@ import java.util.Date;
 @Entity
 @Table(name = "produto")
 @Data
+@Getter
+@Setter
 public class Produto {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
