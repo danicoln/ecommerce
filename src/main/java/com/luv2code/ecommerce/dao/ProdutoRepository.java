@@ -13,4 +13,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     Page<Produto> findByCategoriaId(@Param("id") Long id, Pageable pageable);
+
+    Page<Produto> findByNomeContaining(@Param("nome") String nome, Pageable pageable);
 }
