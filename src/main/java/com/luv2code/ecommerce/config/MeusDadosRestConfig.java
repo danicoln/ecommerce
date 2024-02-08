@@ -1,6 +1,8 @@
 package com.luv2code.ecommerce.config;
 
 import com.luv2code.ecommerce.entity.CategoriaProduto;
+import com.luv2code.ecommerce.entity.Estado;
+import com.luv2code.ecommerce.entity.Pais;
 import com.luv2code.ecommerce.entity.Produto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
@@ -29,20 +31,21 @@ public class MeusDadosRestConfig implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] acoesNaoSuportadas = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
-        //disabilitar os metodos para Produto
-        config.getExposureConfiguration()
-                .forDomainType(Produto.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas));
-
-        //disabilitar os metodos para Categoria
-        config.getExposureConfiguration()
-                .forDomainType(CategoriaProduto.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas));
+        //disabilitar os metodos Http: PUT, POST e DELETE
+        desabilitaMetodoHttp(Produto.class, config, acoesNaoSuportadas);
+        desabilitaMetodoHttp(CategoriaProduto.class, config, acoesNaoSuportadas);
+        desabilitaMetodoHttp(Pais.class, config, acoesNaoSuportadas);
+        desabilitaMetodoHttp(Estado.class, config, acoesNaoSuportadas);
 
         //chamar um meétodo auxiliaar para nos ajudar a expor os IDs.
         expoeIds(config);
+    }
+
+    private void desabilitaMetodoHttp(Class classe, RepositoryRestConfiguration config, HttpMethod[] acoesNaoSuportadas) {
+        config.getExposureConfiguration()
+                .forDomainType(classe)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(acoesNaoSuportadas));
     }
 
     private void expoeIds(RepositoryRestConfiguration config) {
