@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Table(name = "pedido_item")
 @Getter
 @Setter
-public class PedidoItem {
+public class ItemPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +28,8 @@ public class PedidoItem {
 
     @Column(name = "produto_id")
     private Long produtoId;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 }
