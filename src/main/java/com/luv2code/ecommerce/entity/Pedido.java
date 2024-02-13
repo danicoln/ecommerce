@@ -45,6 +45,18 @@ public class Pedido {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Set<ItemPedido> itensPedidos = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_entrega_id", referencedColumnName = "id")
+    private Endereco enderecoEntrega;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_cobranca_id", referencedColumnName = "id")
+    private Endereco enderecoCobranca;
+
     public void adicionar(ItemPedido item){
 
         if(item != null) {

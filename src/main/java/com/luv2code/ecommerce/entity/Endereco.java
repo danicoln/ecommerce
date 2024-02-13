@@ -29,4 +29,8 @@ public class Endereco {
 
     @Column(name = "cep")
     private String cep;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Pedido pedido;
 }
