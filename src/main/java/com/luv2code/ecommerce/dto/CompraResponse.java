@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class CompraResponse {
 
-    private String numeroRastreio;
+    private final String numeroRastreio;
 }
