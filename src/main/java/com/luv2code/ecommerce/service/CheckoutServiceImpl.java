@@ -42,6 +42,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         //popular cliente com pedido
         Cliente cliente = compra.getCliente();
+        cliente.adicionar(pedido);
 
         //salvar no banco de dados
         clienteRepository.save(cliente);

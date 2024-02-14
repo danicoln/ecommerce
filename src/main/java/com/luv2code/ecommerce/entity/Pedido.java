@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "pedido")
+@Table(name = "pedidos")
 @Getter
 @Setter
 public class Pedido {
