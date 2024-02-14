@@ -43,7 +43,7 @@ public class Pedido {
     private Date dataAtualizacao;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private Set<ItemPedido> itensPedidos = new HashSet<>();
+    private Set<ItemPedido> itemPedidos = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -60,11 +60,11 @@ public class Pedido {
     public void adicionar(ItemPedido item){
 
         if(item != null) {
-            if(itensPedidos == null) {
-                itensPedidos = new HashSet<>();
+            if(itemPedidos == null) {
+                itemPedidos = new HashSet<>();
             }
 
-            itensPedidos.add(item);
+            itemPedidos.add(item);
             item.setPedido(this);
         }
     }

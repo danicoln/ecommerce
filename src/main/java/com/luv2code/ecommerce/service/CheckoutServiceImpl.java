@@ -33,8 +33,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         pedido.setNumeroRastreio(rastreioPedido);
 
         //popular o pedido com item-pedidos
-        Set<ItemPedido> itemPedidos = compra.getItemPedidos();
-        itemPedidos.forEach(item -> pedido.adicionar(item));
+        Set<ItemPedido> itensPedidos = compra.getItemPedidos();
+        itensPedidos.forEach(item -> pedido.adicionar(item));
 
         //popular o pedido com os enderecos de entrega e cobranca
         pedido.setEnderecoCobranca(compra.getEnderecoCobranca());
